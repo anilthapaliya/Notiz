@@ -1,15 +1,11 @@
 package com.bca.notiz;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
 import androidx.core.splashscreen.SplashScreen;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -38,12 +34,8 @@ public class SplashActivity extends AppCompatActivity {
     private void loadingLogic() {
 
         isLoading = false;
-        /*new Handler().postDelayed(() -> {
-            // download something..
-            // initialize something ..
-            // routing logic
-            isLoading = false;
-        }, 5000);*/
+        Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
 
 }

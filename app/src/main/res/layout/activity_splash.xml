@@ -6,19 +6,39 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     android:orientation="vertical"
-    android:gravity="center"
     tools:context=".SplashActivity">
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <ImageView
         android:layout_width="120dp"
         android:layout_height="120dp"
+        android:layout_gravity="center"
         android:src="@drawable/notiz_logo" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
+        android:layout_gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@color/primaryColor"
+        android:textSize="35sp"
+        android:textStyle="bold"/>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="@string/app_version"
         android:textColor="@color/textGrayColor"
         android:textSize="20sp" />
