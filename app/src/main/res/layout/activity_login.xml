@@ -35,7 +35,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="30dp"
         app:boxBackgroundMode="outline"
         app:boxBackgroundColor="@color/offWhiteColor"
         android:textColorHint="@color/textGrayColor"
@@ -64,12 +64,9 @@
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="match_parent"
-        android:layout_height="60dp"
         android:layout_marginTop="16dp"
-        app:cornerRadius="15dp"
-        android:backgroundTint="@color/primaryColor"
-        android:text="Login"
-        android:textSize="20sp"/>
+        style="@style/Theme.Notiz.PrimaryButton"
+        android:text="Login"/>
 
     <View
         android:layout_width="wrap_content"
