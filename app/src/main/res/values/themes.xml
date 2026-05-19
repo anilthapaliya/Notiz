@@ -24,6 +24,7 @@
         <item name="android:textSize">18sp</item>
         <item name="cornerRadius">12dp</item>
         <item name="textAllCaps">false</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">60dp</item>
     </style>
     <style name="Theme.Notiz.SecondaryButton" parent="Widget.MaterialComponents.Button">
@@ -34,6 +35,20 @@
         <item name="strokeColor">@color/textGrayColor</item>
         <item name="strokeWidth">2dp</item>
         <item name="textAllCaps">false</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">60dp</item>
+    </style>
+    <style name="Theme.Notiz.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@color/offWhiteColor</item>
+        <item name="boxStrokeColor">@color/textGrayColor</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="android:textColorHint">@color/textGrayColor</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="boxCornerRadiusTopStart">10dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+        <item name="boxCornerRadiusBottomStart">10dp</item>
+        <item name="boxCornerRadiusBottomEnd">10dp</item>
+        <item name="endIconTint">@color/textGrayColor</item>
     </style>
 </resources>

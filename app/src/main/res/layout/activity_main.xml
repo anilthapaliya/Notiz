@@ -18,22 +18,19 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="20dp"
-        android:padding="20dp"
+        android:layout_marginBottom="@dimen/globalPadding"
+        android:padding="@dimen/globalPadding"
         android:gravity="bottom"
         android:orientation="vertical">
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLogin"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
             style="@style/Theme.Notiz.PrimaryButton"
             android:textAllCaps="false"
-            android:text="Login"/>
+            android:text="@string/text_login"/>
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRegister"
-            android:layout_width="match_parent"
             style="@style/Theme.Notiz.SecondaryButton"
-            android:text="Register"/>
+            android:text="@string/text_register"/>
     </LinearLayout>
 
 </FrameLayout>

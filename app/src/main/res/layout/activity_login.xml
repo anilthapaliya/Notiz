@@ -3,10 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:padding="@dimen/globalPadding"
     android:background="@drawable/login_background"
     android:orientation="vertical"
     tools:context=".LoginActivity">
@@ -20,8 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:text="Welcome"
-        android:textSize="35sp"
+        android:text="@string/text_login_title"
+        android:textSize="@dimen/titleFont"
         android:textStyle="bold"
         android:textColor="@color/primaryColor"/>
 
@@ -29,16 +28,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
-        android:text="Please login to continue"
-        android:textSize="18sp"/>
+        android:text="@string/text_login_subtitle"
+        android:textSize="@dimen/subtitleFont"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        app:boxBackgroundMode="outline"
-        app:boxBackgroundColor="@color/offWhiteColor"
-        android:textColorHint="@color/textGrayColor"
+        android:layout_marginTop="@dimen/globalBigMargin"
+        style="@style/Theme.Notiz.TextInputLayout"
         android:hint="Email Address">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -49,12 +46,10 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="@dimen/globalMarginTop"
         app:endIconMode="password_toggle"
         app:endIconTint="@color/textGrayColor"
-        app:boxBackgroundMode="outline"
-        app:boxBackgroundColor="@color/offWhiteColor"
-        android:textColorHint="@color/textGrayColor"
+        style="@style/Theme.Notiz.TextInputLayout"
         android:hint="Password">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -64,9 +59,9 @@
 
     <com.google.android.material.button.MaterialButton
         android:layout_width="match_parent"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/globalPadding"
         style="@style/Theme.Notiz.PrimaryButton"
-        android:text="Login"/>
+        android:text="@string/text_login"/>
 
     <View
         android:layout_width="wrap_content"
@@ -77,8 +72,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Don't have account? Register."
+        android:text="@string/text_register_help"
         android:textColor="@color/offWhiteColor"
-        android:textSize="18sp" />
+        android:textSize="@dimen/linkFont" />
 
 </LinearLayout>

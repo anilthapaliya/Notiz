@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">Notiz</string>
     <string name="app_version">V 1.0</string>
+    <string name="text_login">Login</string>
+    <string name="text_register">Register</string>
+    <string name="text_login_help">Already have account? Login.</string>
+    <string name="text_register_help">Don\'t have account? Register.</string>
+    <string name="text_login_title">Welcome</string>
+    <string name="text_register_title">Create account</string>
+    <string name="text_terms_conditions">I have read the Terms and Conditions.</string>
+    <string name="text_login_subtitle">Please login to continue.</string>
+    <string name="text_register_subtitle">Please fill in the form.</string>
+    <string name="text_gender">Gender</string>
 </resources>

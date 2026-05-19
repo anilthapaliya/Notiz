@@ -5,69 +5,138 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/globalPadding"
+    android:background="@drawable/login_background"
     tools:context=".RegisterActivity">
 
-    <Button
-        android:id="@+id/btnCenter"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="Center" />
-
-    <Button
-        android:id="@+id/btnLeft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/btnCenter"
-        android:layout_marginEnd="20dp"
-        android:layout_centerInParent="true"
-        android:text="Left" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:text="Floating" />
+        android:layout_centerHorizontal="true"
+        android:text="@string/text_login_help"
+        android:textColor="@color/offWhiteColor"
+        android:textSize="@dimen/linkFont" />
 
-    <Button
-        android:id="@+id/btnRight"
+    <TextView
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/btnCenter"
-        android:layout_marginStart="20dp"
+        android:layout_gravity="start"
+        android:layout_above="@id/tvSubtitle"
+        android:text="@string/text_register_title"
+        android:textSize="@dimen/titleFont"
+        android:textStyle="bold"
+        android:textColor="@color/primaryColor"/>
+
+    <TextView
+        android:id="@+id/tvSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/tilFullName"
+        android:layout_gravity="start"
+        android:text="@string/text_register_subtitle"
+        android:textSize="@dimen/subtitleFont"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilFullName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/globalBigMargin"
+        android:layout_above="@id/tilEmail"
+        style="@style/Theme.Notiz.TextInputLayout"
+        app:startIconDrawable="@drawable/full_name"
+        android:hint="Full Name">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEmail"
+        android:layout_marginTop="@dimen/globalMarginTop"
         android:layout_centerInParent="true"
-        android:text="Right" />
-    <Button
-        android:id="@+id/btnTop"
+        app:startIconDrawable="@drawable/email_icon"
+        style="@style/Theme.Notiz.TextInputLayout"
+        android:hint="Email Address">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/globalMarginTop"
+        android:layout_below="@id/tilEmail"
+        app:endIconMode="password_toggle"
+        app:startIconDrawable="@drawable/password_icon"
+        style="@style/Theme.Notiz.TextInputLayout"
+        android:hint="Password">
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/tvGender"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/btnCenter"
-        android:layout_centerInParent="true"
-        android:text="Top" />
-    <Button
-        android:id="@+id/btnBottom"
+        android:layout_marginTop="@dimen/globalMarginTop"
+        android:layout_below="@id/tilPassword"
+        android:text="@string/text_gender"
+        android:textColor="@color/offWhiteColor"
+        android:textSize="@dimen/regularFont"
+        android:textStyle="bold" />
+
+    <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btnCenter"
-        android:layout_marginEnd="20dp"
-        android:layout_centerInParent="true"
-        android:text="Bottom" />
-    <Button
-        android:id="@+id/btn1"
+        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/globalMarginTop"
+        android:layout_toEndOf="@id/tvGender"
+        android:layout_below="@id/tilPassword">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male"
+            android:buttonTint="@color/offWhiteColor"
+            android:textColor="@color/offWhiteColor"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female"
+            android:buttonTint="@color/offWhiteColor"
+            android:textColor="@color/offWhiteColor"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Others"
+            android:buttonTint="@color/offWhiteColor"
+            android:textColor="@color/offWhiteColor"/>
+    </RadioGroup>
+
+    <CheckBox
+        android:id="@+id/chkTerms"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/btnCenter"
-        android:layout_below="@id/btnLeft"
-        android:layout_marginEnd="20dp"
-        android:text="1" />
-    <Button
-        android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:text="Arrow" />
+        android:layout_marginTop="@dimen/globalMarginTop"
+        android:layout_below="@id/tvGender"
+        android:buttonTint="@color/offWhiteColor"
+        android:text="@string/text_terms_conditions"
+        android:textColor="@color/offWhiteColor"
+        android:textSize="@dimen/regularFont"
+        android:textStyle="bold"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/globalPadding"
+        android:layout_below="@id/chkTerms"
+        style="@style/Theme.Notiz.PrimaryButton"
+        android:text="@string/text_register"/>
 
 </RelativeLayout>
