@@ -3,6 +3,7 @@
     <dimen name="globalPadding">16dp</dimen>
     <dimen name="globalMarginTop">10dp</dimen>
     <dimen name="globalBigMargin">30dp</dimen>
+    <dimen name="globalCornerRadius">12dp</dimen>
 
     <dimen name="titleFont">35sp</dimen>
     <dimen name="subtitleFont">20sp</dimen>
