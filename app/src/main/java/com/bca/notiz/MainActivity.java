@@ -2,7 +2,11 @@ package com.bca.notiz;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.splashscreen.SplashScreen;
@@ -15,11 +19,11 @@ public class MainActivity extends AppCompatActivity {
     private MaterialButton btnLogin, btnRegister;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle b) {
 
-        SplashScreen splash = SplashScreen.installSplashScreen(this);
+        //SplashScreen splash = SplashScreen.installSplashScreen(this);
 
-        super.onCreate(savedInstanceState);
+        super.onCreate(b);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
@@ -36,6 +40,18 @@ public class MainActivity extends AppCompatActivity {
         /*splash.setKeepOnScreenCondition(() -> {
             return isLoading;
         });*/
+        Log.i("MainActivity", "Activity Created ..");
+        if (b != null) {
+            String user = b.getString("username");
+            Log.w("MainActivity", "username: " + user);
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("username", "user@sth.com");
+        outState.putString("password", "some_pwd");
     }
 
     private void registerEvents() {
@@ -44,8 +60,43 @@ public class MainActivity extends AppCompatActivity {
             // show login activity
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
-            finish();
         });
+
+        btnRegister.setOnClickListener(view -> {
+            // Show register activity using explicit intent.
+            Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.w("MainActivity", "Activity Started ..");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e("MainActivity", "Activity Resumed ..");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.v("MainActivity", "Activity Paused ..");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.wtf("MainActivity", "Activity Stopped ..");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("MainActivity", "Activity Destroyed ..");
     }
 
 }

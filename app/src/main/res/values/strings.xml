@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">Notiz</string>
     <string name="app_version">V 1.0</string>
     <string name="text_login">Login</string>
@@ -11,4 +12,14 @@
     <string name="text_login_subtitle">Please login to continue.</string>
     <string name="text_register_subtitle">Please fill in the form.</string>
     <string name="text_gender">Gender</string>
+
+    <string name="fragment_title_welcome">Welcome to Notiz</string>
+    <string name="fragment_subtitle_welcome">Capture ideas, organize notes and stay productive - all in one place.</string>
+    <string name="fragment_title_features">Stay Organized Effortlessly</string>
+    <string name="fragment_subtitle_features">Create categories, pin important notes, and find everything instantly.</string>
+    <string name="fragment_title_privacy">Your Notes, Your Privacy</string>
+    <string name="fragment_subtitle_privacy">Your thoughts stay secure and accessible whenever you need them.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
