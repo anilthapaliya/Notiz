@@ -5,15 +5,13 @@ import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
 import androidx.core.splashscreen.SplashScreen;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
 import com.bca.notiz.fragments.FeaturesFragment;
 import com.bca.notiz.fragments.PrivacyFragment;
 import com.bca.notiz.fragments.WelcomeFragment;
+import com.bca.notiz.utils.Caching;
 import com.google.android.material.button.MaterialButton;
 
 public class OnBoardingActivity extends AppCompatActivity {
@@ -30,9 +28,25 @@ public class OnBoardingActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         // layout inflation
         setContentView(R.layout.activity_on_boarding);
+
+        decideRoutes();
         viewBinding();
         registerEvents();
         loadFragment(current);
+    }
+
+    void decideRoutes() {
+
+        // check if the app is run for the first time or not.
+        // if first time launch, show on boarding screen and mark the flag as false.
+        // if not show main screen.
+        boolean isFirstLaunch = Caching.isFirstLaunch(this);
+        if (!isFirstLaunch) {
+            Intent intent = new Intent(OnBoardingActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        else Caching.setFirstLaunch(this, false);
     }
 
     void viewBinding() {
