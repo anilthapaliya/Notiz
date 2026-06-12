@@ -12,6 +12,7 @@
     <string name="text_login_subtitle">Please login to continue.</string>
     <string name="text_register_subtitle">Please fill in the form.</string>
     <string name="text_gender">Gender</string>
+    <string name="text_title_add_note">Add a Note</string>
 
     <string name="fragment_title_welcome">Welcome to Notiz</string>
     <string name="fragment_subtitle_welcome">Capture ideas, organize notes and stay productive - all in one place.</string>
