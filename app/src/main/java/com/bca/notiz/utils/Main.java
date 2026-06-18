@@ -15,6 +15,7 @@ public class Main extends Application {
 
     private void createChannels() {
 
+        // if the device is greater than or equal to Oreo.
         NotificationChannel channelUpdates = new NotificationChannel(Constants.CHANNEL_UPDATES,
                 Constants.CHANNEL_UPDATES_NAME, NotificationManager.IMPORTANCE_DEFAULT);
         NotificationChannel channelNotes = new NotificationChannel(Constants.CHANNEL_NOTES,

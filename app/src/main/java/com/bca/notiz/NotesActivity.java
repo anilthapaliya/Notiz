@@ -2,6 +2,7 @@ package com.bca.notiz;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.bca.notiz.broadcasts.AirplaneModeReceiver;
 import com.bca.notiz.utils.NotificationUtils;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
@@ -33,8 +35,6 @@ public class NotesActivity extends AppCompatActivity {
         viewBinding();
         registerEvents();
         checkNotificationPermission();
-
-        NotificationUtils.showAppUpdates(this, "Welcome", "Enjoy this app!");
     }
 
     private final int NOTIFICATION_CODE = 102;
@@ -80,6 +80,23 @@ public class NotesActivity extends AppCompatActivity {
         imgClose.setOnClickListener(v -> dialog.dismiss());
 
         dialog.show();
+    }
+
+    AirplaneModeReceiver receiver;
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // register the broadcast receiver
+        receiver = new AirplaneModeReceiver();
+        IntentFilter filter = new IntentFilter(Intent.ACTION_AIRPLANE_MODE_CHANGED);
+        registerReceiver(receiver, filter);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        // unregister
+        if (receiver != null) unregisterReceiver(receiver);
     }
 
 }

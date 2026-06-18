@@ -17,13 +17,14 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    ImageView imgProfile, imgCamera;
+    ImageView imgProfile, imgCamera, imgBack;
     private final int CAMERA_CODE = 100;
 
     @Override
@@ -40,6 +41,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         imgProfile = findViewById(R.id.imgProfile);
         imgCamera = findViewById(R.id.imgCamera);
+        imgBack = findViewById(R.id.imgBack);
     }
 
     private ActivityResultLauncher<Intent> camLauncher;
@@ -73,6 +75,8 @@ public class ProfileActivity extends AppCompatActivity {
                         new String[] {Manifest.permission.CAMERA}, CAMERA_CODE);
             }
         });
+
+        imgBack.setOnClickListener(v -> finish());
     }
 
     void popUp() {
