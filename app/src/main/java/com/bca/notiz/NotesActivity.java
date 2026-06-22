@@ -1,30 +1,48 @@
 package com.bca.notiz;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bca.notiz.broadcasts.AirplaneModeReceiver;
+import com.bca.notiz.recyclers.Note;
+import com.bca.notiz.recyclers.NoteAdapter;
 import com.bca.notiz.utils.NotificationUtils;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class NotesActivity extends AppCompatActivity {
 
     ImageView imgProfile;
     FloatingActionButton btnAdd;
+    RecyclerView recyclerNotes;
+    ProgressBar progressBar;
+    NoteAdapter noteAdapter;
+    List<Note> notes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +53,11 @@ public class NotesActivity extends AppCompatActivity {
         viewBinding();
         registerEvents();
         checkNotificationPermission();
+
+        // Prepare notes adapter
+        notes = new ArrayList<>();
+        noteAdapter = new NoteAdapter(notes);
+        recyclerNotes.setAdapter(noteAdapter);
     }
 
     private final int NOTIFICATION_CODE = 102;
@@ -53,6 +76,8 @@ public class NotesActivity extends AppCompatActivity {
 
         imgProfile = findViewById(R.id.imgProfile);
         btnAdd = findViewById(R.id.btnAdd);
+        progressBar = findViewById(R.id.progressBar);
+        recyclerNotes = findViewById(R.id.recyclerNotes);
     }
 
     void registerEvents() {
@@ -62,6 +87,8 @@ public class NotesActivity extends AppCompatActivity {
         });
 
         btnAdd.setOnClickListener(v -> addNote());
+
+        recyclerNotes.setLayoutManager(new LinearLayoutManager(this));
     }
 
     void addNote() {
@@ -73,13 +100,63 @@ public class NotesActivity extends AppCompatActivity {
 
         MaterialCardView imgClose = view.findViewById(R.id.imgClose);
         MaterialButton btnAdd = view.findViewById(R.id.btnAdd);
+        TextInputEditText etTitle = view.findViewById(R.id.etTitle);
+        TextInputEditText etMessage = view.findViewById(R.id.etMessage);
+
         btnAdd.setOnClickListener(v -> {
-            NotificationUtils.showNotesUpdates(this, "Notes Added", "");
+            // simulate heavy tasks.
+            String title = etTitle.getText().toString();
+            String message = etMessage.getText().toString();
+            //new UploadNote(title, message, this).start();
+            new Thread(new UploadTask(title, message)).start();
             dialog.dismiss();
         });
         imgClose.setOnClickListener(v -> dialog.dismiss());
 
         dialog.show();
+    }
+
+    class UploadNote extends Thread {
+        String title, message;
+        Context context;
+        UploadNote(String title, String message, Context context) {
+            this.title = title;
+            this.message = message;
+            this.context = context;
+        }
+        @Override
+        public void run() {
+            try {
+                Thread.sleep(7000);
+                NotificationUtils.showNotesUpdates(context, title, message);
+            } catch (InterruptedException e) {
+                Log.d("Exception","Interrupted");
+            }
+        }
+    }
+
+    class UploadTask implements Runnable {
+        String title, message;
+        UploadTask(String title, String message) {
+            this.title = title;
+            this.message = message;
+        }
+
+        @Override
+        public void run() {
+            try {
+                runOnUiThread(() -> showProgress(true));
+                Thread.sleep(7000);
+                // API calls-perform actual work
+                runOnUiThread(() -> {
+                    loadNote(new Note(title, message));
+                    showProgress(false);
+                });
+            } catch (InterruptedException e) {
+                Log.d("Exception","Interrupted");
+                runOnUiThread(() -> showProgress(false));
+            }
+        }
     }
 
     AirplaneModeReceiver receiver;
@@ -97,6 +174,15 @@ public class NotesActivity extends AppCompatActivity {
         super.onStop();
         // unregister
         if (receiver != null) unregisterReceiver(receiver);
+    }
+
+    void showProgress(boolean value) {
+        progressBar.setVisibility(value ? View.VISIBLE : View.INVISIBLE);
+    }
+
+    void loadNote(Note note) {
+        notes.add(note);
+        noteAdapter.notifyItemInserted(notes.size() - 1);
     }
 
 }

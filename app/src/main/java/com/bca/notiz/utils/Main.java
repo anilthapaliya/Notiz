@@ -3,7 +3,6 @@ package com.bca.notiz.utils;
 import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.os.Build;
 
 public class Main extends Application {
 

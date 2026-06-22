@@ -41,10 +41,12 @@ public class OnBoardingActivity extends AppCompatActivity {
         // if first time launch, show on boarding screen and mark the flag as false.
         // if not show main screen.
         boolean isFirstLaunch = Caching.isFirstLaunch(this);
-        if (!isFirstLaunch) {
-            Intent intent = new Intent(OnBoardingActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
+        boolean isLoggedIn = Caching.isLoggedIn(this);
+        if (isLoggedIn) {
+            loadHome();
+        }
+        else if (!isFirstLaunch) {
+            loadMain();
         }
         else Caching.setFirstLaunch(this, false);
     }
@@ -87,6 +89,13 @@ public class OnBoardingActivity extends AppCompatActivity {
     void loadMain() {
 
         Intent intent = new Intent(OnBoardingActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    void loadHome() {
+
+        Intent intent = new Intent(OnBoardingActivity.this, NotesActivity.class);
         startActivity(intent);
         finish();
     }

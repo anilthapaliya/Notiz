@@ -12,8 +12,8 @@ public class DeviceBootReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         if (Intent.ACTION_BOOT_COMPLETED.equals(intent.getAction())) {
-            NotificationUtils.showAppUpdates(context, "Rebooted",
-                    "The device has been rebooted.");
+            /*NotificationUtils.showAppUpdates(context, "Rebooted",
+                    "The device has been rebooted.");*/
         }
     }
 

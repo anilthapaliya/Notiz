@@ -43,10 +43,11 @@ public class NotificationUtils {
 
         NotificationCompat.Builder notification = new NotificationCompat.Builder(context, Constants.CHANNEL_NOTES)
                 .setSmallIcon(R.drawable.notiz_logo)
+                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), R.drawable.baseline_add))
                 .setContentTitle(title)
-                .setContentText(message)
-                .setStyle(new NotificationCompat.BigPictureStyle()
-                        .bigPicture(BitmapFactory.decodeResource(context.getResources(), R.drawable.features)));
+                .setContentText(message);
+                /*.setStyle(new NotificationCompat.BigPictureStyle()
+                        .bigPicture(BitmapFactory.decodeResource(context.getResources(), R.drawable.features)));*/
         NotificationManagerCompat manager = NotificationManagerCompat.from(context);
         manager.notify(2, notification.build());
     }

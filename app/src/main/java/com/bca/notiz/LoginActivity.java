@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.bca.notiz.utils.Caching;
 import com.google.android.material.button.MaterialButton;
 
 public class LoginActivity extends AppCompatActivity {
@@ -20,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
 
     void showHome() {
 
+        Caching.setLoggedIn(this, true);
         startActivity(new Intent(LoginActivity.this, NotesActivity.class));
         finish();
     }
