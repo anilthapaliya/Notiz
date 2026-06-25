@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.Looper;
 import android.util.Log;
 import android.view.View;
@@ -108,12 +110,57 @@ public class NotesActivity extends AppCompatActivity {
             String title = etTitle.getText().toString();
             String message = etMessage.getText().toString();
             //new UploadNote(title, message, this).start();
-            new Thread(new UploadTask(title, message)).start();
+            //new Thread(new UploadTask(title, message)).start();
+
+            /*Handler uiHandler = new Handler(Looper.getMainLooper()); // gives UI thread
+            uiHandler.post(() -> {
+                // runs immediately
+                // runs in background.
+                // don't run long running operations, tasks, otherwise ANR
+            });
+            uiHandler.postDelayed(() -> {
+                // execute some tasks
+            }, 4000);
+
+            HandlerThread bgThread = new HandlerThread("bg_thread");
+            bgThread.start();
+
+            Handler bgHandler = new Handler(bgThread.getLooper()); // gives bgThread
+            bgHandler.post(() -> {
+               // runs in background
+               // don't ever try to run UI tasks here.
+                uiHandler.post(() -> {
+                   // runs in main thread.  eg. show progress
+                });
+                // perform bg tasks
+                uiHandler.post(() -> {
+                    // runs in main thread.  eg. hide progress
+                });
+            });
+
+            bgThread.quitSafely();*/
+
             dialog.dismiss();
         });
         imgClose.setOnClickListener(v -> dialog.dismiss());
 
         dialog.show();
+    }
+
+    class PerformTask extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            // UI thread
+        }
+        @Override
+        protected Void doInBackground(Void... voids) {
+            // BG thread
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void unused) {
+            // UI thread
+        }
     }
 
     class UploadNote extends Thread {
@@ -141,7 +188,6 @@ public class NotesActivity extends AppCompatActivity {
             this.title = title;
             this.message = message;
         }
-
         @Override
         public void run() {
             try {

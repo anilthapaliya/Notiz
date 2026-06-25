@@ -74,4 +74,18 @@ public class NotificationUtils {
         manager.notify(1, notification.build());
     }
 
+    public static void showAlarmNotification(Context context, String title, String message) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+                ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED)
+            return;
+
+        NotificationCompat.Builder notification = new NotificationCompat.Builder(context, Constants.CHANNEL_UPDATES)
+                .setSmallIcon(R.drawable.alarm)
+                .setContentTitle(title)
+                .setContentText(message);
+        NotificationManagerCompat manager = NotificationManagerCompat.from(context);
+        manager.notify(3, notification.build());
+    }
+
 }

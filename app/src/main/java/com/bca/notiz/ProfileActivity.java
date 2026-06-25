@@ -22,7 +22,7 @@ import com.bumptech.glide.Glide;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    ImageView imgProfile, imgCamera, imgBack;
+    ImageView imgProfile, imgCamera, imgBack, imgSettings;
     private final int CAMERA_CODE = 100;
 
     @Override
@@ -40,6 +40,7 @@ public class ProfileActivity extends AppCompatActivity {
         imgProfile = findViewById(R.id.imgProfile);
         imgCamera = findViewById(R.id.imgCamera);
         imgBack = findViewById(R.id.imgBack);
+        imgSettings = findViewById(R.id.imgSettings);
     }
 
     private ActivityResultLauncher<Intent> camLauncher;
@@ -75,6 +76,9 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         imgBack.setOnClickListener(v -> finish());
+
+        imgSettings.setOnClickListener(v ->
+            startActivity(new Intent(ProfileActivity.this, SettingsActivity.class)));
     }
 
     void popUp() {
